@@ -1,0 +1,159 @@
+<form [formGroup]="pessoaForm">
+  <div class="container ">
+    <div class="row mt-5 mb-5">
+      <div class="col-md-12 col-lg-12">
+        <ol class="breadcrumb">
+          <li>
+            <a routerLink='/admin-intra'><span class="pi pi-home" style="color: #3f51b5" aria-hidden="true">
+                &nbsp;
+                <i style="color: #333" class="pi pi-chevron-right"></i>&nbsp;</span></a>
+          </li>
+          <li>
+            <a style="color: #333;text-decoration: none;" routerLink='/admin-intra'>Colaboradores</a>&nbsp;
+            <i style="color: #333" class="pi pi-chevron-right"></i>&nbsp;
+          </li>
+          <li>
+            <a style="color: #3f51b5;text-decoration: none;">
+              <b><em><span *ngIf="!tituloPagina">Novo Colaborador</span>
+                  <span *ngIf="tituloPagina">Editar Colaborador</span></em>
+              </b>
+            </a>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="container bordaList shadow-custom">
+    <div class="row mt-5 mb-5">
+      <div class="col-md-12 col-12 col-xs-12">
+        <h3 class="titulo" *ngIf="!tituloPagina">Cadastro de Colaboradores</h3>
+        <h3 class="titulo" *ngIf="tituloPagina"> Alteração de Colaboradores</h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-xs-12">
+        <div class="form-group col-md">
+          <input type="text" class="form-control form-control-lg" [(ngModel)]="objPessoa.nome" formControlName="nome"
+            maxlength="200" placeholder="Colaborador" />
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-md-6 col-lg-6 col-xs-12">
+        <div class="form-group col-md">
+          <input type="text" class="form-control form-control-lg" [(ngModel)]="objPessoa.usuario" formControlName="usuario"
+            maxlength="200" placeholder="UserName" />
+        </div>
+      </div>
+      <div class="col-md-3 col-lg-3 col-xs-12">
+        <div class="form-group p-field marginMobileDate">
+          <span class="p-float-label" style="border: none">
+            <p-calendar formControlName="dataNasc" [(ngModel)]="objPessoa.dataNasc" min="1900-01-01"
+              [style]="{ width: '100%', height: '48px' }" [showIcon]="true" dateFormat="dd/mm/yy" inputId="icon">
+            </p-calendar>
+            <label for="float-input">Data de Nascimento:</label>
+          </span>
+        </div>
+      </div>
+      <div class="col-md-3 col-lg-3 col-xs-12">
+        <div class="form-check mt-3 marginMobileDate">
+          <label class="form-check-label" for="ativo" style="
+              color: #686d71;
+              padding-right: 15%;
+              font-weight: bold;
+            ">
+            Ativo?
+          </label>
+          <input class="form-check-input checkbox-ativo" formControlName="ativo" type="checkbox" value="" id="ativo"
+            [(ngModel)]="objPessoa.ativo" />
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-md-9 col-lg-9 col-9 col-xs-12">
+        <div class="form-group col-md">
+          <input type="text" class="form-control form-control-lg" [(ngModel)]="objPessoa.logradouro" formControlName="logradouro"
+            maxlength="200" placeholder="Endereço" />
+        </div>
+      </div>
+      <div class="col-md-3 col-lg-3 col-3 col-xs-12">
+        <div class="form-group col-md">
+          <input type="text" class="form-control form-control-lg" [(ngModel)]="objPessoa.cep" formControlName="cep"
+            maxlength="20" placeholder="Digite o seu cep" />
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-md-4 col-lg-4 col-4 col-xs-12">
+        <div class="form-group col-md">
+          <input type="text" class="form-control form-control-lg" [(ngModel)]="objPessoa.bairro" formControlName="bairro"
+            maxlength="200" placeholder="Bairro" />
+        </div>
+      </div>
+      <div class="col-md-3 col-lg-3 col-3 col-xs-12">
+        <div class="form-group col-md">
+          <input type="text" class="form-control form-control-lg" [(ngModel)]="objPessoa.cidade" formControlName="cidade"
+            maxlength="200" placeholder="Cidade" />
+        </div>
+      </div>
+      <div class="col-md-2 col-lg-2 col-2 col-xs-12">
+        <div class="form-group">
+          <span class="p-float-label">
+            <p-dropdown [options]="estadosList" optionValue="value" placeholder="" formControlName="estado"
+              [(ngModel)]="objPessoa.estado" [showClear]="true" [style]="{ width: '100%', height: '48px' }">
+            </p-dropdown>
+            <label for="float-input">Estado</label>
+          </span>
+        </div>
+      </div>
+      <div class="col-md-3 col-lg-3 col-3 col-xs-12">
+        <div class="form-group col-md">
+          <input type="text" class="form-control form-control-lg" [(ngModel)]="objPessoa.pais" formControlName="pais"
+            maxlength="200" placeholder="Pais" />
+        </div>
+      </div>
+    </div>
+    <br/>
+    <div class="row mb-4">
+      <div class="col-md-6 col-lg-6 col-xs-12">
+        <div class="form-group col-md">
+          <input type="text" class="form-control form-control-lg" [(ngModel)]="objPessoa.email" formControlName="email"
+            maxlength="200" placeholder="Email" />
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-6 col-6 col-sm-12 col-xs-12">
+        <div class="form-group">
+          <span class="p-float-label">
+            <p-dropdown [options]="funcaoList" optionValue="value" placeholder="" formControlName="funcao"
+              [(ngModel)]="objPessoa.funcao" [showClear]="true" [style]="{ width: '100%', height: '48px' }">
+            </p-dropdown>
+            <label for="float-input">Função</label>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-5 mb-5">
+      <div class="col-md-4 col-4 col-xs-12">
+          <button class="btn btn-warning btn-lg form-control bold voltar" type="button" (click)="voltar()">
+              Voltar
+          </button>
+      </div>
+      <div class="col-md-4 col-4 col-xs-12">
+          <button class="btn btn-primary btn-lg  form-control salvar" (click)="salvar()"
+              [disabled]="verificarBotaoSalvar()" type="button">
+              Salvar
+          </button>
+      </div>
+      <div class="col-md-4 col-4 col-xs-12">
+          <button class="btn btn-success btn-lg  form-control salvarevoltar" type="button"
+              (click)="salvarVoltar()" [disabled]="verificarBotaoSalvar()">
+              Salvar e Voltar
+          </button>
+      </div>
+  </div>
+  </div>
+</form>

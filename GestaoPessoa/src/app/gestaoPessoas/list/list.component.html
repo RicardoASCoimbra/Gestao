@@ -1,0 +1,92 @@
+<div class="container">
+  <br />
+  <br />
+  <br />
+  <div class="row ">
+    <div class="col-md-10 col-10 col-xs-12">
+      <h3 class="titulo">Colaboradores</h3>
+    </div>
+    <div class="col-md-2 col-2 col-xs-12">
+      <button class="btn btn-success" (click)="cadastrar()">Novo Colaborador</button>
+    </div>
+  </div>
+</div>
+<br />
+<br />
+<br />
+<div class="container">
+  <div class="row">
+    <div class="content-section implementation">
+      <div class="card shadow-custom">
+        <p-table #dt1 [value]="rowData" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
+          [rowsPerPageOptions]="[10, 25, 50]" [loading]="loading"
+          styleClass="p-datatable-customers p-datatable-gridlines p-datatable-responsive-demo" [paginator]="true"
+          currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entradas" [globalFilterFields]="[
+            'pessoa.nome',
+            'pessoa.usuario',
+            'pessoa.dataNasc'
+          ]">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>
+                <div class="p-d-flex p-jc-between p-ai-center">
+                  <p class="titulogrid">Nome </p>
+                  <p-columnFilter class="sembutton" type="text" field="pessoa.nome" display="menu"></p-columnFilter>
+                </div>
+              </th>
+              <th>
+                <div class="p-d-flex p-jc-between p-ai-center">
+                  <p class="titulogrid">Usuário</p>
+                  <p-columnFilter class="sembutton" type="text" field="pessoa.usuario" display="menu"></p-columnFilter>
+                </div>
+              </th>
+              <th>
+                <div class="p-d-flex p-jc-between p-ai-center">
+                  <p class="titulogrid">Data de nascimento</p>
+                  <p-columnFilter class="sembutton" type="text" field="pessoa.dataNasc" display="menu"></p-columnFilter>
+                </div>
+              </th>
+              <th>
+                <div class="p-d-flex p-jc-between p-ai-center">
+                  <p class="titulogrid"></p>
+                </div>
+              </th>
+              <th>
+                <div class="p-d-flex p-jc-between p-ai-center">
+                  <p class="titulogrid"></p>
+                </div>
+              </th>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="body" let-pessoa>
+            <tr>
+              <td class="p-text-center">
+                {{ pessoa.nome}}
+              </td>
+              <td class="p-text-center">
+                {{ pessoa.usuario }}
+              </td>
+              <td class="p-text-center">
+                <span>{{
+                  pessoa.dataNasc | date: "dd/MM/yyyy"
+                  }}</span>
+              </td>
+              <td class="p-text-center">
+                <a (click)="editar(pessoa.id)" name="" id="" class="btn btn-warning" role="button">Editar</a>
+              </td>
+              <td class="p-text-center">
+                <a (click)="excluir(pessoa.id)" name="" id="" class="btn btn-danger" role="button">Remover</a>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="7">Nenhum colaborador cadastrado</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+</div>
